@@ -4,6 +4,8 @@
  */
 package controller;
 
+import java.util.ArrayList;
+
 import model.Book;
 import model.BorrowingInventory;
 import view.LibraryView;
@@ -34,30 +36,30 @@ public class LibraryController {
     public void handleChoice(String choice) {
         switch (choice) {
             case "1":
-                borrowBook();
+                handleBorrowBook();
                 break;
             case "2":
-                getActiveLoans();
+                handleShowActiveLoans();
                 break;
             case "3":
-                returnBook();
+                handleReturnBook();
                 break;
             case "4":
-                getPersonalLoans();
+                handleShowPersonalLoans();
                 break;
             case "5":
-                checkAvailability();
+                handleCheckBookAvailability();
                 break;
-            case "666":
-                System.out.println("Goodbye!");
+            case "6":
+                view.displayMessage("Goodbye!");
                 break;
             default:
-                System.out.println("Invalid choice, please try again.");
+                view.displayMessage("Invalid choice, please try again.");
         }
     }
 
     // Creat
-    public void borrowBook() {
+    public void handleBorrowBook() {
         // controller collects raw data from view
         String isbn = view.getUserInput("Enter book ISBN: ");
         String title = view.getUserInput("Enter book title: ");
@@ -83,20 +85,34 @@ public class LibraryController {
 
     // Read (all)
     // Returns a complete list of all currently borrowed books
-    public void getActiveLoans() {
-        view.displayAllBorrowedBooks();
+    public void handleShowActiveLoans() {
+        ArrayList<Book> activeLoans = inventory.getActiveLoans();
+
+        if (activeLoans.isEmpty()) {
+            view.displayMessage("No active loans at the moment.");
+            return;
+        }
+
+        view.displayAllBorrowedBooks(activeLoans);  // pass to view to display
     }
 
-    public void getPersonalLoans() {
+    public void handleShowPersonalLoans() {
+        String borrower = view.getUserInput("Enter borrower's name: ");
+        boolean success = inventory.getRecordsByBorrower(borrower);
 
+        if (success) {
+            view.displayMessage("");
+        } else {
+            view.displayMessage("borrower");
+        }
     }
 
-    public void checkAvailability() {
+    public void handleCheckBookAvailability() {
 
     }
 
     // UPDATE
-    public void returnBook() {
+    public void handleReturnBook() {
 
     }
 

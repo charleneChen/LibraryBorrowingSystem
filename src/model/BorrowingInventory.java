@@ -20,7 +20,7 @@ public class BorrowingInventory {
     private ArrayList<Book> records;
 
     public BorrowingInventory() {
-        this.records = new ArrayList<>();
+        records = new ArrayList<>();
     }
 
     /*
@@ -40,15 +40,15 @@ public class BorrowingInventory {
     }
 
     // Read all 
-    // Fetches a list of all books currently checked out   
-    public ArrayList<Book> getAllBorrowingRecords() {
-        return this.records;
+    // Returns a list of all books currently checked out   
+    public ArrayList<Book> getActiveLoans() {
+        return new ArrayList<>(records); // return copy, not original list
     }
 
     // Read
     // Returns all borrowing records by borrower name
-    public ArrayList<Book> getRecordsByBorrower(String borrower) {
-        return this.records;
+    public boolean getRecordsByBorrower(String borrower) {
+        return false;
     }
 
     // Read

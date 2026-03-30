@@ -4,7 +4,10 @@
  */
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import model.Book;
 
 public class LibraryView {
     private Scanner scanner = new Scanner(System.in);
@@ -22,7 +25,7 @@ public class LibraryView {
         System.out.printf("%5s%s\n", "", "3. Return a book");
         System.out.printf("%5s%s\n", "", "4. View personal loans");
         System.out.printf("%5s%s\n", "", "5. Check book availability");
-        System.out.printf("%5s%s\n", "", "666. Exit");
+        System.out.printf("%5s%s\n", "", "6. Exit");
     }
 
     public void displayMessage(String message) {
@@ -35,7 +38,11 @@ public class LibraryView {
         return scanner.nextLine();
     }
 
-    public void displayAllBorrowedBooks() {
-
+    public void displayAllBorrowedBooks(ArrayList<Book> books) {
+        System.out.println("--- All Borrowed Books ---");
+        for (Book book : books) {
+            System.out.println("- " + book.getTitle() + "by " + book.getAuthor());
+        }
+        System.out.println("--------------------------");
     }
 }
