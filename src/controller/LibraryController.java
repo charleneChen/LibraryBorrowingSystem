@@ -30,7 +30,9 @@ public class LibraryController {
             view.displayMenu();
             choice = view.getUserInput("Enter your choice: ");  // get input from view
             handleChoice(choice);  // controller decides action
-        } while (choice != "666");  
+
+            // In Java, you cannot compare Strings using != or ==. Those operators compare the memory address (if they are the same object), not the actual text.
+        } while (!choice.equals("0"));  
     }
 
     public void handleChoice(String choice) {
@@ -162,7 +164,7 @@ public class LibraryController {
             view.displayMessage("Record updated successfully!");
             return;
         }
-        
+
         view.displayMessage("Failed to update record.");
 
     }
