@@ -22,10 +22,11 @@ public class LibraryView {
     public void displayMenu() {
         System.out.printf("%5s%s\n", "", "1. Borrow a book");
         System.out.printf("%5s%s\n", "", "2. Display all borrowed books");
-        System.out.printf("%5s%s\n", "", "3. Return a book");
+        System.out.printf("%5s%s\n", "", "3. Return a book / Delete a borrowing record");
         System.out.printf("%5s%s\n", "", "4. View personal loans");
         System.out.printf("%5s%s\n", "", "5. Check book availability");
-        System.out.printf("%5s%s\n", "", "6. Exit");
+        System.out.printf("%5s%s\n", "", "6. Update a borrowing record / Update borrower");
+        System.out.printf("%5s%s\n", "", "0. Exit");
     }
 
     public void displayMessage(String message) {

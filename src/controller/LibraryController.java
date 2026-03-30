@@ -36,21 +36,30 @@ public class LibraryController {
     public void handleChoice(String choice) {
         switch (choice) {
             case "1":
+                // Create
                 handleBorrowBook();
                 break;
             case "2":
+                // Read
                 handleShowActiveLoans();
                 break;
             case "3":
+                // Delete
                 handleReturnBook();
                 break;
             case "4":
+                // Read
                 handleShowPersonalLoans();
                 break;
             case "5":
+                // Read
                 handleCheckBookAvailability();
                 break;
             case "6":
+                // Update
+                handleUpdateBorrower();
+                break;
+            case "0":
                 view.displayMessage("Goodbye!");
                 break;
             default:
@@ -58,7 +67,6 @@ public class LibraryController {
         }
     }
 
-    // Creat
     public void handleBorrowBook() {
         // controller collects raw data from view
         String isbn = view.getUserInput("Enter book ISBN: ");
@@ -83,7 +91,6 @@ public class LibraryController {
         
     }
 
-    // Update
     public void handleReturnBook() {
         String isbn = view.getUserInput("Enter book ISBN: ");
         boolean success = inventory.removeRecord(isbn);
@@ -96,7 +103,6 @@ public class LibraryController {
         view.displayMessage("Book \"" + isbn + "\" was not borrowed.");
     }
 
-    // Read (all)
     // Returns a complete list of all currently borrowed books
     public void handleShowActiveLoans() {
         ArrayList<Book> activeLoans = inventory.getActiveLoans();
@@ -138,6 +144,8 @@ public class LibraryController {
         view.displayMessage("Book \"" + isbn + "\" is currently borrowed.");
     }
 
-    // DELETE
+    public void handleUpdateBorrower() {
+
+    }
 
 }
