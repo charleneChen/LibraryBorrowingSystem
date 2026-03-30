@@ -101,13 +101,15 @@ public class LibraryController {
         view.displayAllBorrowedBooks(activeLoans);  // pass to view to display
     }
 
-    // 
     public void handleShowPersonalLoans() {
+        // get borrower name from view
         String borrower = view.getUserInput("Enter borrower's name: ");
+        // get personal loans from inventory
         ArrayList<Book> borrowedBooks = inventory.getRecordsByBorrower(borrower);
 
+        // controller decides what to display
         if (borrowedBooks.isEmpty()) {
-            view.displayMessage("No active loans for " + borrower + ".");
+            view.displayMessage(borrower + " has no active loans.");
             return;
         } 
 
@@ -115,7 +117,17 @@ public class LibraryController {
     }
 
     public void handleCheckBookAvailability() {
+        // get isbn from view
+        String isbn = view.getUserInput("Enter book ISBN: ");
+        // check availability in inventory
+        boolean available = inventory.containsRecord(isbn);
 
+        if (available) {
+            view.displayMessage("Book \"" + isbn + "\" is available to check out.");
+            return;
+        }
+
+        view.displayMessage("Book \"" + isbn + "\" is currently borrowed.");
     }
 
     // DELETE

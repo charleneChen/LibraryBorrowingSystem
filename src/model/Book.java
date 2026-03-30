@@ -5,6 +5,7 @@
 package model;
 
 public class Book {
+    // isbn is unique per book
     private String isbn, title, author, publisher, borrower;
 
     public Book(String isbn, String title, String author, String publisher, String borrower) {
