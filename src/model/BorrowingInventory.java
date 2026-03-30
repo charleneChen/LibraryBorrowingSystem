@@ -20,7 +20,7 @@ public class BorrowingInventory {
     private ArrayList<Book> records;
 
     public BorrowingInventory() {
-        records = new ArrayList<>();
+        this.records = new ArrayList<>();
     }
 
     /*
@@ -29,12 +29,13 @@ public class BorrowingInventory {
         1. Maximum limit of 5 books per borrower
         2. only one copy of a specific title can be borrowed at a time
      */
-    public boolean borrowBook(Book book) {
+    // Add a new record
+    public boolean addRecord(Book book) {
         // controller gets feedback
         if (isBorrowed(book)) {
             return false;
         }
-        addRecord(book);
+        this.records.add(book);
         return true;
         
     }
@@ -42,13 +43,19 @@ public class BorrowingInventory {
     // Read all 
     // Returns a list of all books currently checked out   
     public ArrayList<Book> getActiveLoans() {
-        return new ArrayList<>(records); // return copy, not original list
+        return new ArrayList<>(this.records); // return copy, not original list
     }
 
     // Read
-    // Returns all borrowing records by borrower name
-    public boolean getRecordsByBorrower(String borrower) {
-        return false;
+    // Returns all borrowing records by a borrower's name
+    public ArrayList<Book> getRecordsByBorrower(String borrower) {
+        ArrayList<Book> books = new ArrayList<>();
+        for (Book book : records) {
+            if (book.getBorrower() == borrower) {
+                books.add(book);
+            }
+        }
+        return books;
     }
 
     // Read
@@ -60,27 +67,14 @@ public class BorrowingInventory {
     // Processes a return
     // Logic: method accepts only one book, enforcing a single return at a tinme
     // Note: there is no minimum loan duration or a fixed return deadline
-    public void returnBook(Book book) {
-        removeRecord(book);
+    // Remove an existent record
+    public void removeRecord(Book book) {
+        this.records.remove(book);
     }
 
     
     // Checks if a specific book has been checked out
     private boolean isBorrowed(Book book) {
         return this.records.contains(book);
-    }
-     
-    // Add a new record
-    private void addRecord(Book book) {
-        // defensive, last line of defense
-        if (isBorrowed(book)) {
-            return;  // silently reject, no message here
-        }
-        this.records.add(book);
-    }
-
-    // Remove an existent record
-    private void removeRecord(Book book) {
-        this.records.remove(book);
     }
 }

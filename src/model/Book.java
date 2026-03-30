@@ -16,23 +16,23 @@ public class Book {
     }
 
     public String getIsbn() {
-        return isbn;
+        return this.isbn;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public String getPublisher() {
-        return publisher;
+        return this.publisher;
     }
 
     public String getBorrower() {
-        return borrower;
+        return this.borrower;
     }
 
     public void setIsbn(String isbn) {

@@ -71,7 +71,7 @@ public class LibraryController {
         Book book = new Book(isbn, title, author, publisher, borrower);
 
         // controller passes to inventory
-        boolean success = inventory.borrowBook(book);
+        boolean success = inventory.addRecord(book);
 
         if (success) {
             // Tells the view to display success message
@@ -81,6 +81,11 @@ public class LibraryController {
             view.displayMessage("Sorry, \"" + book.getTitle() + "\" is already bowrrowed.");
         }
         
+    }
+
+    // Update
+    public void handleReturnBook() {
+
     }
 
     // Read (all)
@@ -96,23 +101,20 @@ public class LibraryController {
         view.displayAllBorrowedBooks(activeLoans);  // pass to view to display
     }
 
+    // 
     public void handleShowPersonalLoans() {
         String borrower = view.getUserInput("Enter borrower's name: ");
-        boolean success = inventory.getRecordsByBorrower(borrower);
+        ArrayList<Book> borrowedBooks = inventory.getRecordsByBorrower(borrower);
 
-        if (success) {
-            view.displayMessage("");
-        } else {
-            view.displayMessage("borrower");
-        }
+        if (borrowedBooks.isEmpty()) {
+            view.displayMessage("No active loans for " + borrower + ".");
+            return;
+        } 
+
+        view.displayAllBorrowedBooks(borrowedBooks);
     }
 
     public void handleCheckBookAvailability() {
-
-    }
-
-    // UPDATE
-    public void handleReturnBook() {
 
     }
 

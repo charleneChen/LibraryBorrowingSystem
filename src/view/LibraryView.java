@@ -45,4 +45,13 @@ public class LibraryView {
         }
         System.out.println("--------------------------");
     }
+
+    public void displayPersonalLoans(String borrower, ArrayList<Book> books) {
+        System.out.println("--- Personal Loans for " + borrower + " ---");
+        for (Book book : books) {
+            System.out.println("- " + book.getTitle() + "by " + book.getAuthor());
+        }
+        System.out.println("--------------------------");
+
+    }
 }
