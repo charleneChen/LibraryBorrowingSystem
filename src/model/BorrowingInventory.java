@@ -94,4 +94,16 @@ public class BorrowingInventory {
         }
         return false;  // not found = available
     }
+
+    // Updates the borrower name on an existing record
+    public boolean updateRecord(String isbn, String borrower) {
+        Book book = getRecordByIsbn(isbn);
+
+        if (book == null) {
+            return false;
+        }
+
+        book.setBorrower(borrower);
+        return true;
+    }
 }

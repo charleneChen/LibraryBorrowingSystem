@@ -117,7 +117,7 @@ public class LibraryController {
 
     public void handleShowPersonalLoans() {
         // get borrower name from view
-        String borrower = view.getUserInput("Enter borrower's name: ");
+        String borrower = view.getUserInput("Enter borrower name: ");
         // get personal loans from inventory
         ArrayList<Book> borrowedBooks = inventory.getRecordsByBorrower(borrower);
 
@@ -134,9 +134,9 @@ public class LibraryController {
         // get isbn from view
         String isbn = view.getUserInput("Enter book ISBN: ");
         // check availability in inventory
-        boolean available = inventory.containsRecord(isbn);
+        boolean isContained = inventory.containsRecord(isbn);
 
-        if (available) {
+        if (!isContained) {
             view.displayMessage("Book \"" + isbn + "\" is available to check out.");
             return;
         }
@@ -145,6 +145,25 @@ public class LibraryController {
     }
 
     public void handleUpdateBorrower() {
+        // get isbn from view
+        String isbn = view.getUserInput("Enter book ISBN to update: ");
+        // check availability in inventory
+        boolean isContained = inventory.containsRecord(isbn);
+        
+        if (!isContained) {
+            view.displayMessage("No record found for ISBN: " + isbn);
+            return;
+        }
+
+        String borrower = view.getUserInput("Enter new borrower name: ");
+        boolean success = inventory.updateRecord(isbn, borrower);
+
+        if (success) {
+            view.displayMessage("Record updated successfully!");
+            return;
+        }
+        
+        view.displayMessage("Failed to update record.");
 
     }
 
