@@ -5,18 +5,18 @@
 package model;
 
 public class Book {
-    private String ISBN, title, author, publisher, borrower;
+    private String isbn, title, author, publisher, borrower;
 
-    public Book(String ISBN, String title, String author, String publisher, String borrower) {
-        this.ISBN = ISBN;
+    public Book(String isbn, String title, String author, String publisher, String borrower) {
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.borrower = borrower;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
     public String getTitle() {
@@ -35,8 +35,8 @@ public class Book {
         return borrower;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public void setTitle(String title) {
