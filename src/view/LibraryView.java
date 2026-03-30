@@ -4,5 +4,38 @@
  */
 package view;
 
+import java.util.Scanner;
+
 public class LibraryView {
+    private Scanner scanner = new Scanner(System.in);
+
+    public void displayWelcome() {
+        System.out.println("----------------------------------");
+        System.out.printf("%5s%s\n", "", "Library Borrowing System");
+        System.out.println("----------------------------------");
+
+    }
+
+    public void displayMenu() {
+        System.out.printf("%5s%s\n", "", "1. Borrow a book");
+        System.out.printf("%5s%s\n", "", "2. Display all borrowed books");
+        System.out.printf("%5s%s\n", "", "3. Return a book");
+        System.out.printf("%5s%s\n", "", "4. View personal loans");
+        System.out.printf("%5s%s\n", "", "5. Check book availability");
+        System.out.printf("%5s%s\n", "", "666. Exit");
+    }
+
+    public void displayMessage(String message) {
+        System.out.println(message);
+    }
+
+    // Display prompts, View captures input and return it to Controller
+    public String getUserInput(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine();
+    }
+
+    public void displayAllBorrowedBooks() {
+
+    }
 }
