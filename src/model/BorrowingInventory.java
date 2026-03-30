@@ -14,6 +14,7 @@ import java.util.ArrayList;
     4. the library holds a single copy of each title
     5. books must be returned individually
     6. books can be returned at any time, no minimum or maximum duration fot book loans
+    7. each book has a unique ISBN
 */
 
 public class BorrowingInventory {
@@ -32,7 +33,7 @@ public class BorrowingInventory {
     // Add a new record
     public boolean addRecord(Book book) {
         // controller gets feedback
-        if (isBorrowed(book)) {
+        if (containsRecord(book.getIsbn())) {
             return false;
         }
         this.records.add(book);
@@ -50,8 +51,8 @@ public class BorrowingInventory {
     // Returns all borrowing records by a borrower's name
     public ArrayList<Book> getRecordsByBorrower(String borrower) {
         ArrayList<Book> books = new ArrayList<>();
-        for (Book book : records) {
-            if (book.getBorrower() == borrower) {
+        for (Book book : this.records) {
+            if (book.getBorrower().equals(borrower)) {
                 books.add(book);
             }
         }
@@ -72,9 +73,16 @@ public class BorrowingInventory {
         this.records.remove(book);
     }
 
-    
     // Checks if a specific book has been checked out
-    private boolean isBorrowed(Book book) {
-        return this.records.contains(book);
+    // if true, this book is not available
+    // if false, this book is available
+    // check by ISBN - it is unique per book
+    public boolean containsRecord(String isbn) {
+        for (Book book : this.records) {
+            if (book.getIsbn().equals(isbn)) {
+                return true;  // found = not available
+            }
+        }
+        return false;  // not found = available
     }
 }
