@@ -85,7 +85,15 @@ public class LibraryController {
 
     // Update
     public void handleReturnBook() {
+        String isbn = view.getUserInput("Enter book ISBN: ");
+        boolean success = inventory.removeRecord(isbn);
 
+        if (success) {
+            view.displayMessage("Book \"" + isbn + "\" returned successfully!");
+            return;
+        }
+
+        view.displayMessage("Book \"" + isbn + "\" was not borrowed.");
     }
 
     // Read (all)

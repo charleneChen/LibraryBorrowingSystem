@@ -38,7 +38,6 @@ public class BorrowingInventory {
         }
         this.records.add(book);
         return true;
-        
     }
 
     // Read all 
@@ -60,17 +59,27 @@ public class BorrowingInventory {
     }
 
     // Read
-    // Returns the borrowing record for the specified book title
-    public void getRecordByTitle(String title) {
-
+    // Returns the borrowing record for the specified book ISBN
+    public Book getRecordByIsbn(String isbn) {
+        for (Book book : this.records) {
+            if (book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
     }
 
     // Processes a return
     // Logic: method accepts only one book, enforcing a single return at a tinme
     // Note: there is no minimum loan duration or a fixed return deadline
     // Remove an existent record
-    public void removeRecord(Book book) {
-        this.records.remove(book);
+    public boolean removeRecord(String isbn) {
+        if (!containsRecord(isbn)) {
+            return false; // return false when book is not found
+        }
+
+        this.records.remove(getRecordByIsbn(isbn));
+        return true;
     }
 
     // Checks if a specific book has been checked out
