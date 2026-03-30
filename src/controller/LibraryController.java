@@ -75,10 +75,10 @@ public class LibraryController {
 
         if (success) {
             // Tells the view to display success message
-            view.displayMessage("\"" + book.getTitle() + "\' borrowed successfully!");
+            view.displayMessage("\"" + book.getTitle() + "\" borrowed successfully!");
         } else {
             // Tells the view to display error message
-            view.displayMessage("Sorry, \"" + book.getTitle() + "\" is already bowrrowed.");
+            view.displayMessage("Sorry, \"" + book.getTitle() + "\" is already borrowed.");
         }
         
     }
