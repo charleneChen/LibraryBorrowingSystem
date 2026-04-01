@@ -25,7 +25,7 @@ public class LibraryView {
         System.out.printf("%5s%s\n", "", "3. Return a book / Delete a borrowing record");
         System.out.printf("%5s%s\n", "", "4. View personal loans");
         System.out.printf("%5s%s\n", "", "5. Check book availability");
-        System.out.printf("%5s%s\n", "", "6. Update a borrowing record / Update borrower");
+        System.out.printf("%5s%s\n", "", "6. Update borrower / Update a borrowing record");
         System.out.printf("%5s%s\n", "", "0. Exit");
     }
 

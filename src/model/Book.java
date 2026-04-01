@@ -4,6 +4,7 @@
  */
 package model;
 
+// Book - encapsulation, all fields private, accessed via getters/setters
 public class Book {
     // isbn is unique per book
     private String isbn, title, author, publisher, borrower;

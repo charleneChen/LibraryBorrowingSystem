@@ -60,7 +60,7 @@ public class BorrowingInventory {
 
     // Read
     // Returns the borrowing record for the specified book ISBN
-    public Book getRecordByIsbn(String isbn) {
+    private Book getRecordByIsbn(String isbn) {
         for (Book book : this.records) {
             if (book.getIsbn().equals(isbn)) {
                 return book;
@@ -86,7 +86,7 @@ public class BorrowingInventory {
     // if true, this book is not available
     // if false, this book is available
     // check by ISBN - it is unique per book
-    public boolean containsRecord(String isbn) {
+    private boolean containsRecord(String isbn) {
         for (Book book : this.records) {
             if (book.getIsbn().equals(isbn)) {
                 return true;  // found = not available
