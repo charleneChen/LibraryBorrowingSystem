@@ -13,9 +13,9 @@ public class LibraryView {
     private Scanner scanner = new Scanner(System.in);
 
     public void displayWelcome() {
-        System.out.println("----------------------------------");
-        System.out.printf("%5s%s\n", "", "Library Borrowing System");
-        System.out.println("----------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.printf("%12s%s\n", "", "Library Borrowing System");
+        System.out.println("----------------------------------------------------");
 
     }
 
@@ -30,7 +30,9 @@ public class LibraryView {
     }
 
     public void displayMessage(String message) {
+        System.out.println("\n===========================================");
         System.out.println(message);
+        System.out.println("===========================================\n");
     }
 
     // Display prompts, View captures input and return it to Controller
@@ -40,19 +42,46 @@ public class LibraryView {
     }
 
     public void displayAllBorrowedBooks(ArrayList<Book> books) {
-        System.out.println("--- All Borrowed Books ---");
+        String format = "%-20s %-40s %-20s %-20s %-20s%n";
+
+        System.out.println("\n==============================================================================");
+        System.out.printf("%45s%n", "All Borrowed Books");
+        System.out.println("==============================================================================");
+        System.out.printf(format, "ISBN", "Title", "Author", "Publisher", "Borrower");
+        System.out.println("------------------------------------------------------------------------------");
+
         for (Book book : books) {
-            System.out.println("- " + book.getTitle() + "by " + book.getAuthor());
+            System.out.printf(format,
+                book.getIsbn(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getBorrower()
+            );
         }
-        System.out.println("--------------------------");
+
+        System.out.println("==============================================================================\n");
     }
 
     public void displayPersonalLoans(String borrower, ArrayList<Book> books) {
-        System.out.println("--- Personal Loans for " + borrower + " ---");
-        for (Book book : books) {
-            System.out.println("- " + book.getTitle() + "by " + book.getAuthor());
-        }
-        System.out.println("--------------------------");
+        String format = "%-20s %-40s %-20s %-20s %-20s%n";
 
+        System.out.println("\n==============================================================================");
+        System.out.printf("%45s%n", "Personal Loans for " + borrower);
+        System.out.println("==============================================================================");
+        System.out.printf(format, "ISBN", "Title", "Author", "Publisher", "Borrower");
+        System.out.println("------------------------------------------------------------------------------");
+
+        for (Book book : books) {
+            System.out.printf(format,
+                book.getIsbn(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getBorrower()
+            );
+        }
+
+        System.out.println("==============================================================================\n");
     }
 }

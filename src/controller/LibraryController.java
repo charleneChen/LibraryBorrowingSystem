@@ -85,7 +85,7 @@ public class LibraryController {
 
         if (success) {
             // Tells the view to display success message
-            view.displayMessage("\"" + book.getTitle() + "\" borrowed successfully!");
+            view.displayMessage(book.getBorrower() + " has borrowed \"" + book.getTitle() + "\" successfully!");
         } else {
             // Tells the view to display error message
             view.displayMessage("Sorry, \"" + book.getTitle() + "\" is already borrowed.");
@@ -129,7 +129,7 @@ public class LibraryController {
             return;
         } 
 
-        view.displayAllBorrowedBooks(borrowedBooks);
+        view.displayPersonalLoans(borrower, borrowedBooks);
     }
 
     public void handleCheckBookAvailability() {
