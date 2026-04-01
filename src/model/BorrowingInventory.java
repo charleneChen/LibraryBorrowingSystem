@@ -8,13 +8,12 @@ import java.util.ArrayList;
 
 /*
     Assumptions:
-    1. you can check out a maximum of 5 books
-    2. books must be borrowed individually
-    3. any book that isn't already checked out is available to borrow
-    4. the library holds a single copy of each title
-    5. books must be returned individually
-    6. books can be returned at any time, no minimum or maximum duration fot book loans
-    7. each book has a unique ISBN
+    1. books must be borrowed individually, one at a time
+    2. any book that isn't already checked out is available to borrow
+    3. the library holds a single copy of each title
+    4. books must be returned individually, one at a time
+    5. books can be returned at any time, no minimum or maximum duration fot book loans
+    6. each book has a unique ISBN
 */
 
 public class BorrowingInventory {
