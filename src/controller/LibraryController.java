@@ -15,8 +15,8 @@ import view.LibraryView;
 */
 
 public class LibraryController {
-    private BorrowingInventory inventory;
-    private LibraryView view;
+    private final BorrowingInventory inventory;
+    private final LibraryView view;
 
     public LibraryController(BorrowingInventory inventory, LibraryView view) {
         this.inventory = inventory;
