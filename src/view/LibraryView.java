@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import model.Book;
 
-public class LibraryView {
+public class LibraryView implements AutoCloseable {
     private Scanner scanner = new Scanner(System.in);
 
     public void displayWelcome() {
@@ -61,6 +61,11 @@ public class LibraryView {
         }
 
         System.out.println("==============================================================================\n");
+    }
+
+    @Override
+    public void close() {
+        scanner.close();
     }
 
     public void displayPersonalLoans(String borrower, ArrayList<Book> books) {

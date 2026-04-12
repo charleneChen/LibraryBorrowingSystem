@@ -8,10 +8,11 @@ import view.LibraryView;
  */
 public class LibraryBorrowingSystem {
     public static void main(String[] args) {
-        LibraryView view = new LibraryView();
-        BorrowingInventory model = new BorrowingInventory();
-        LibraryController controller = new LibraryController(model, view);
+        try (LibraryView view = new LibraryView()) {
+            BorrowingInventory model = new BorrowingInventory();
+            LibraryController controller = new LibraryController(model, view);
 
-        controller.run();
+            controller.run();
+        }
     }
 }
