@@ -145,24 +145,16 @@ public class LibraryController {
 
     public void handleUpdateBorrower() {
         String isbn = view.getUserInput("Enter book ISBN to update: ");
-        // check availability in inventory
-        boolean isContained = inventory.containsRecord(isbn);
         
-        if (!isContained) {
+        // The pre-check here is for UX (early exit before prompting for borrower name)
+        if (!inventory.containsRecord(isbn)) {
             view.displayMessage("No record found for ISBN: " + isbn);
             return;
         }
 
         String borrower = view.getUserInput("Enter new borrower name: ");
-        boolean success = inventory.updateRecord(isbn, borrower);
-
-        if (success) {
-            view.displayMessage("Record updated successfully!");
-            return;
-        }
-
-        view.displayMessage("Failed to update record.");
-
+        inventory.updateRecord(isbn, borrower);
+        view.displayMessage("Record updated successfully!");
     }
 
 }
