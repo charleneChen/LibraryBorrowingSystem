@@ -28,7 +28,7 @@ public class LibraryController {
         do {
             view.displayWelcome();
             view.displayMenu();
-            choice = view.getUserInput("Enter your choice: ");  // get input from view
+            choice = view.getUserInput("Enter your choice: ");
             handleChoice(choice);  // controller decides action
 
             // In Java, you cannot compare Strings using != or ==. Those operators compare the memory address (if they are the same object), not the actual text.
@@ -70,7 +70,6 @@ public class LibraryController {
     }
 
     public void handleBorrowBook() {
-        // controller collects raw data from view
         String isbn = view.getUserInput("Enter book ISBN: ");
         String title = view.getUserInput("Enter book title: ");
         String author = view.getUserInput("Enter book author: ");
@@ -118,7 +117,6 @@ public class LibraryController {
     }
 
     public void handleShowPersonalLoans() {
-        // get borrower name from view
         String borrower = view.getUserInput("Enter borrower name: ");
         // get personal loans from inventory
         ArrayList<Book> borrowedBooks = inventory.getRecordsByBorrower(borrower);
@@ -133,7 +131,6 @@ public class LibraryController {
     }
 
     public void handleCheckBookAvailability() {
-        // get isbn from view
         String isbn = view.getUserInput("Enter book ISBN: ");
         // check availability in inventory
         boolean isContained = inventory.containsRecord(isbn);
@@ -147,7 +144,6 @@ public class LibraryController {
     }
 
     public void handleUpdateBorrower() {
-        // get isbn from view
         String isbn = view.getUserInput("Enter book ISBN to update: ");
         // check availability in inventory
         boolean isContained = inventory.containsRecord(isbn);

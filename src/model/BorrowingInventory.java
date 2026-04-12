@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /*
     Assumptions:
@@ -26,11 +27,14 @@ public class BorrowingInventory {
     // Add a new record
     public boolean addRecord(Book book) {
         // controller gets feedback
-        if (containsRecord(book.getIsbn())) {
-            return false;
-        }
-        this.records.add(book);
-        return true;
+        Optional<Book> record = getRecordByIsbn(book.getIsbn());
+        return record
+            .map(val -> {
+                return false;
+            }).orElseGet(() -> {
+                this.records.add(book);
+                return true;
+            });
     }
 
     // Read all 
@@ -53,26 +57,14 @@ public class BorrowingInventory {
 
     // Read
     // Returns the borrowing record for the specified book ISBN
-    private Book getRecordByIsbn(String isbn) {
+    private Optional<Book> getRecordByIsbn(String isbn) {
         for (Book book : this.records) {
             if (book.getIsbn().equals(isbn)) {
-                return book;
+                return Optional.of(book);
             }
         }
-        return null;
-    }
-
-    // Processes a return
-    // Logic: method accepts only one book, enforcing a single return at a tinme
-    // Note: there is no minimum loan duration or a fixed return deadline
-    // Remove an existent record
-    public boolean removeRecord(String isbn) {
-        if (!containsRecord(isbn)) {
-            return false; // return false when book is not found
-        }
-
-        this.records.remove(getRecordByIsbn(isbn));
-        return true;
+        // return null; // caller might forget to check for null
+        return Optional.empty();
     }
 
     // Checks if a specific book has been checked out
@@ -80,23 +72,29 @@ public class BorrowingInventory {
     // if false, this book is available
     // check by ISBN - it is unique per book
     public boolean containsRecord(String isbn) {
-        for (Book book : this.records) {
-            if (book.getIsbn().equals(isbn)) {
-                return true;  // found = not available
-            }
-        }
-        return false;  // not found = available
+        return getRecordByIsbn(isbn).isPresent();
+    }
+
+    // Processes a return
+    // Logic: method accepts only one book, enforcing a single return at a tinme
+    // Note: there is no minimum loan duration or a fixed return deadline
+    // Remove an existent record
+    public boolean removeRecord(String isbn) {
+        Optional<Book> record = getRecordByIsbn(isbn);
+
+        return record.map(book -> {
+            this.records.remove(book);
+            return true;
+        }).orElse(false); // return false when book is not found
     }
 
     // Updates the borrower name on an existing record
     public boolean updateRecord(String isbn, String borrower) {
-        Book book = getRecordByIsbn(isbn);
+        Optional<Book> record = getRecordByIsbn(isbn);
 
-        if (book == null) {
-            return false;
-        }
-
-        book.setBorrower(borrower);
-        return true;
+        return record.map(book -> {
+            book.setBorrower(borrower); 
+            return true;
+        }).orElse(false); // return false if empty, not found
     }
 }
