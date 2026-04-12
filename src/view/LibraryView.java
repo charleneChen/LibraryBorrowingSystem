@@ -11,7 +11,6 @@ import model.Book;
 
 public class LibraryView implements AutoCloseable {
     private final Scanner scanner = new Scanner(System.in);
-    private static final String FORMAT = "%-20s %-40s %-20s %-20s %-20s%n";
 
     @Override
     public void close() {
@@ -48,34 +47,26 @@ public class LibraryView implements AutoCloseable {
     }
 
     public void displayAllBorrowedBooks(ArrayList<Book> books) {
-        System.out.println("\n==============================================================================");
-        System.out.printf("%45s%n", "All Borrowed Books");
-        System.out.println("==============================================================================");
-        System.out.printf(FORMAT, "ISBN", "Title", "Author", "Publisher", "Borrower");
-        System.out.println("------------------------------------------------------------------------------");
-
-        for (Book book : books) {
-            System.out.printf(FORMAT,
-                book.getIsbn(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getPublisher(),
-                book.getBorrower()
-            );
-        }
-
-        System.out.println("==============================================================================\n");
+        String header = "All Borrowed Books";
+        printBooksTable(header, books);
     }
 
     public void displayPersonalLoans(String borrower, ArrayList<Book> books) {
+        String header = String.format("Personal Loans for %s", borrower);
+        printBooksTable(header, books);
+    }
+
+    private void printBooksTable(String header, ArrayList<Book> books) {
+        String formaString = "%-20s %-40s %-20s %-20s %-20s%n";
+
         System.out.println("\n==============================================================================");
-        System.out.printf("%45s%n", "Personal Loans for " + borrower);
+        System.out.printf("%45s%n", header);
         System.out.println("==============================================================================");
-        System.out.printf(FORMAT, "ISBN", "Title", "Author", "Publisher", "Borrower");
+        System.out.printf(formaString, "ISBN", "Title", "Author", "Publisher", "Borrower");
         System.out.println("------------------------------------------------------------------------------");
 
         for (Book book : books) {
-            System.out.printf(FORMAT,
+            System.out.printf(formaString,
                 book.getIsbn(),
                 book.getTitle(),
                 book.getAuthor(),
