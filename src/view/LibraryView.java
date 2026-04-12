@@ -57,16 +57,16 @@ public class LibraryView implements AutoCloseable {
     }
 
     private void printBooksTable(String header, ArrayList<Book> books) {
-        String formaString = "%-20s %-40s %-20s %-20s %-20s%n";
+        String formatString = "%-20s %-40s %-20s %-20s %-20s%n";
 
         System.out.println("\n==============================================================================");
         System.out.printf("%45s%n", header);
         System.out.println("==============================================================================");
-        System.out.printf(formaString, "ISBN", "Title", "Author", "Publisher", "Borrower");
+        System.out.printf(formatString, "ISBN", "Title", "Author", "Publisher", "Borrower");
         System.out.println("------------------------------------------------------------------------------");
 
         for (Book book : books) {
-            System.out.printf(formaString,
+            System.out.printf(formatString,
                 book.getIsbn(),
                 book.getTitle(),
                 book.getAuthor(),

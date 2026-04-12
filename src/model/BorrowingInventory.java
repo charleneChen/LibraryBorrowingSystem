@@ -13,7 +13,7 @@ import java.util.Optional;
     2. any book that isn't already checked out is available to borrow
     3. the library holds a single copy of each title
     4. books must be returned individually, one at a time
-    5. books can be returned at any time, no minimum or maximum duration fot book loans
+    5. books can be returned at any time, no minimum or maximum duration for book loans
     6. each book has a unique ISBN
 */
 
@@ -76,7 +76,7 @@ public class BorrowingInventory {
     }
 
     // Processes a return
-    // Logic: method accepts only one book, enforcing a single return at a tinme
+    // Logic: method accepts only one book, enforcing a single return at a time
     // Note: there is no minimum loan duration or a fixed return deadline
     // Remove an existent record
     public boolean removeRecord(String isbn) {
