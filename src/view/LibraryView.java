@@ -43,7 +43,7 @@ public class LibraryView implements AutoCloseable {
     // Display prompts, View captures input and return it to Controller
     public String getUserInput(String prompt) {
         System.out.print(prompt);
-        return scanner.nextLine();
+        return scanner.nextLine().trim();
     }
 
     public void displayAllBorrowedBooks(ArrayList<Book> books) {

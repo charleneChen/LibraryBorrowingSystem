@@ -35,7 +35,7 @@ public class LibraryController {
         } while (!choice.equals("0"));  
     }
 
-    public void handleChoice(String choice) {
+    private void handleChoice(String choice) {
         switch (choice) {
             case "1":
                 // Create

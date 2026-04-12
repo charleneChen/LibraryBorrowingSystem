@@ -23,12 +23,6 @@ public class BorrowingInventory {
         this.records = new ArrayList<>();
     }
 
-    /*
-        Creat
-        Constraints:
-        1. Maximum limit of 5 books per borrower
-        2. only one copy of a specific title can be borrowed at a time
-     */
     // Add a new record
     public boolean addRecord(Book book) {
         // controller gets feedback
